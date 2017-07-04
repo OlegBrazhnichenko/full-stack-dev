@@ -1,123 +1,106 @@
 * {
   box-sizing: border-box; }
 
-:root {
-  --page-width: 1100px; }
-
 body {
-  font-family: arial,sans-serif;
-  overflow-x: hidden; }
+  font-family: arial,sans-serif; }
 
-.header {
-  width: var(--page-width);
+header {
+  width: 1100px;
   margin: 0 auto;
   padding: 15px 0;
   overflow: hidden; }
-  .header .logo {
+  header .logo {
     float: left; }
-  .header .nav {
+  header nav {
     float: left;
     overflow: hidden;
-    padding: 18px 0px;
+    padding: 18px 0;
     margin-left: 536px; }
-    .header .nav .nav-item {
+    header nav .nav-item {
       float: left;
       margin-right: 66px; }
-      .header .nav .nav-item a {
+      header nav .nav-item a {
         color: #2B3D4F;
         text-decoration: none;
         text-transform: uppercase; }
-    .header .nav .nav-item:last-child {
-      margin-right: 0; }
+      header nav .nav-item:last-child {
+        margin-right: 0; }
 
-.main-content {
-  width: var(--page-width);
-  margin: 0 auto;
-  position: relative; }
-  .main-content .background-wrap .app {
-    background-color: #1ABC9C;
-    overflow: hidden;
-    position: relative;
-    padding: 63px 0 55px 0; }
-    .main-content .background-wrap .app .app-img {
-      float: left;
-      margin-left: 166px; }
-    .main-content .background-wrap .app .app-info {
-      width: 550px;
-      padding-top: 67px;
-      margin-left: 169px;
-      float: left;
-      color: #fff; }
-      .main-content .background-wrap .app .app-info .title {
-        margin-bottom: 55px;
-        font-weight: bold;
-        font-size: 32px; }
-      .main-content .background-wrap .app .app-info .text {
-        text-align: justify;
-        letter-spacing: 0.5px;
-        font-size: 18px;
-        line-height: 21px;
-        margin-bottom: 52px; }
-      .main-content .background-wrap .app .app-info .buy .btn {
-        padding: 10px 17px; }
-  .main-content .background-wrap:after {
-    content: '';
-    position: absolute;
-    z-index: -1;
-    height: 557px;
-    top: 0;
-    left: -10000px;
-    width: 20000px;
-    background-color: #1ABC9C; }
-  .main-content .info {
-    padding: 63px 0 76px 0;
-    overflow: hidden; }
-    .main-content .info .info-block {
-      text-align: center;
-      float: left;
-      width: 33%;
-      color: #2B3D4F; }
-      .main-content .info .info-block .info-img {
-        margin: 0 auto;
-        background-color: #1ABC9C;
-        display: inline-block;
-        padding: 23px;
-        border-radius: 50px; }
-        .main-content .info .info-block .info-img img {
-          width: 42px;
-          height: 32px; }
-      .main-content .info .info-block .title {
-        font-weight: bold;
-        font-weight: bold;
-        font-size: 19px;
-        margin-top: 21px; }
-      .main-content .info .info-block .text {
-        margin-top: 20px;
-        line-height: 24px; }
+.app {
+  width: 100%;
+  background-color: #1ABC9C;
+  overflow: hidden;
+  padding: 63px 0 55px 0; }
+  .app .app-img {
+    float: left;
+    margin-left: 166px; }
+  .app .app-info {
+    width: 550px;
+    padding-top: 67px;
+    margin-left: 169px;
+    float: left;
+    color: #fff; }
+    .app .app-info .title {
+      margin-bottom: 55px;
+      font-weight: bold;
+      font-size: 32px; }
+    .app .app-info .text {
+      text-align: justify;
+      letter-spacing: 0.5px;
+      font-size: 18px;
+      line-height: 21px;
+      margin-bottom: 52px; }
+    .app .app-info .buy-btn {
+      padding: 10px 17px; }
 
-.footer {
-  width: var(--page-width);
-  margin: 0 auto;
-  background-color: #16A085;
-  position: relative; }
-  .footer .background-wrap .title {
+.info {
+  width: 100%;
+  background: white;
+  padding: 63px 0 76px 0;
+  overflow: hidden; }
+  .info .info-block {
+    text-align: center;
+    float: left;
+    width: 33%;
+    color: #2B3D4F; }
+    .info .info-block .info-img {
+      margin: 0 auto;
+      background-color: #1ABC9C;
+      display: inline-block;
+      padding: 23px;
+      border-radius: 50px; }
+      .info .info-block .info-img img {
+        width: 35px;
+        height: 32px; }
+    .info .info-block .title {
+      font-weight: bold;
+      font-size: 19px;
+      margin-top: 21px; }
+    .info .info-block .text {
+      margin-top: 20px;
+      line-height: 24px; }
+
+footer {
+  width: 100%;
+  background-color: #16A085; }
+  footer .title {
     text-align: center;
     padding-top: 61px;
     color: white;
     font-size: 34px;
     font-weight: bold; }
-  .footer .background-wrap form {
+  footer form {
     width: 600px;
     margin: 51px auto 0 auto;
     text-align: center; }
-    .footer .background-wrap form input {
+    footer form input {
       width: 100%;
       margin-bottom: 8px;
       font-size: 19px;
       padding: 4px 8px;
       outline: none;
       color: #2B3D4F; }
-    .footer .background-wrap form textarea {
+    footer form textarea {
       resize: none;
       width: 100%;
       height: 122px;
@@ -125,23 +108,14 @@ body {
       outline: none;
       color: #2B3D4F;
       padding: 4px 8px; }
-    .footer .background-wrap form .btn {
+    footer form .submit-btn {
       margin-top: 60px;
       width: 250px;
       color: white;
       font-size: 24px;
       padding: 10px; }
-  .footer .background-wrap:after {
-    content: '';
-    position: absolute;
-    z-index: -1;
-    height: 557px;
-    top: 0;
-    left: -10000px;
-    width: 20000px;
-    background-color: #16A085; }
 
-.btn {
+.btn, .app .app-info .buy-btn, footer form .submit-btn {
   cursor: pointer;
   outline: none;
   background-color: transparent;
@@ -150,9 +124,11 @@ body {
   border-radius: 4px;
   font-size: 25px;
   transition: 0.2s; }
+  .btn:hover, .app .app-info .buy-btn:hover, footer form .submit-btn:hover {
+    background-color: rgba(0, 0, 0, 0.1); }
+  .btn:active, .app .app-info .buy-btn:active, footer form .submit-btn:active {
+    background-color: rgba(0, 0, 0, 0.2); }
 
-.btn:hover {
-  background-color: rgba(0, 0, 0, 0.1); }
-
-.btn:active {
-  background-color: rgba(0, 0, 0, 0.2); }
+.container {
+  width: 1100px;
+  margin: 0 auto; }
