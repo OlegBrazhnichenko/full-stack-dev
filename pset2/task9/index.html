@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+				content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<label for="apartment">
+		Enter number of apartment:
+	</label><br>
+	<input id="apartment" type="number" min="0" /><br>
+
+	<label for="entrance">
+		Enter number of entrances:
+	</label><br>
+	<input id="entrance" type="number" min="0" /><br>
+
+	<label for="apartments">
+		Enter number of apartments on each floor:
+	</label><br>
+	<input id="apartments" type="number" min="0" /><br>
+
+	<label for="floor">
+		Enter number of floors:
+	</label><br>
+	<input id="floor" type="number" min="0" /><br>
+
+	<input type="button" value="Determine" onclick="determine()"><br>
+	<p id="result"></p>
+	<script src="script.js"></script>
+</body>
+</html>
