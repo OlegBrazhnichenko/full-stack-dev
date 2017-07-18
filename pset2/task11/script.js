@@ -1,6 +1,6 @@
 function makeLinks(){
     var links = document.getElementById('links').value;
-    links = links.replace(/http:\/\/|https:\/\//gi,'');
+    links = links.replace(/http[s]?:\/\//gi,'');
     links = links.split(',');
     links = links.sort();
     document.getElementById('result').innerHTML = '';
