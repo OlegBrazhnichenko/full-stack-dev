@@ -1,7 +1,8 @@
 window.onload = function(){
     var stars = "";
-    for(var i = 0; i <= 50; i++ ){
+    document.getElementById('stars').innerHTML = '';
+    for(var i = 0; i <= 50; i++){
         stars += "*";
-        console.log(stars);
+        document.getElementById('stars').innerHTML += stars + '<br>';
     }
 };

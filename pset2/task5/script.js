@@ -7,24 +7,25 @@ window.onload = function(){
 
 function format_age(age){
     var str;
-    if(age>=10 && age<= 20 ){
+    if(age >= 10 && age <= 20 ){
         str = "лет";
     }else{
         switch (age % 10){
             case 1:
-                str="год";
+                str = "год";
                 break;
             case 2:
             case 3:
             case 4:
-                str="года";
+                str = "года";
                 break;
             default:
-                str="лет";
+                str = "лет";
                 break;
         }
     }
-    age +=" "+str;
+    age += " " + str;
+
     return age;
 }
 

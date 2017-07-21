@@ -6,17 +6,23 @@
 				content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Document</title>
-	<script src="script.js"></script>
 	<link rel="stylesheet" href="main.css">
 </head>
 <body>
-	<label for="height">Type height: </label>
+	<label for="height">
+		Type height:
+	</label>
 	<input id="height" type="number" min="0" />
-	<label for="width">Type width: </label>
-	<input id="width" type="number" min="0" />
-	<input type="button" value="make!" onclick="make()" />
-	<table id="board" border = 0>
 
-	</table>
+	<label for="width">
+		Type width:
+	</label>
+	<input id="width" type="number" min="0" />
+
+	<input type="button" value="make!" onclick="make()" />
+
+	<table id="board" border = 0></table>
+
+	<script src="script.js"></script>
 </body>
 </html>

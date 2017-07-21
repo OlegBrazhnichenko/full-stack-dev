@@ -1,3 +1,8 @@
+const MINUTES = 60;
+const SECONDS = 60;
+const MILLISECONDS = 1000;
+const VALID_TIME_LENGTH = 3;
+
 function count(){
     var first_date = [
         new Date(document.getElementById("date1").value),
@@ -10,14 +15,14 @@ function count(){
     if(valid(first_date) && valid(second_date)){
         showResult(compare(first_date,second_date));
     }else{
-        console.log("false");
+        alert("Date is invalid!");
     }
 }
 
 function valid(date){
     if(date[0] !== "" && date[1] !== ""){
-        if(date[1].split(":").length === 3){
-            var reg = new RegExp("^([0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$");
+        if(date[1].split(":").length === VALID_TIME_LENGTH){
+            var reg = new RegExp("/^([0-1]?[0-9]|2[0-4]):([0-5][0-9]):([0-5][0-9])?$/");
 
             return reg.test(date[1]);
         }
@@ -40,6 +45,7 @@ function compare(d1, d2){
 
 function showResult(res){
     if(res === -1){
+
         return false;
     }
     var date = new Date(res);
@@ -59,6 +65,8 @@ function formateDate(date){
 }
 function getMillisecondsFromDate(date){
     date[1] = date[1].split(":");
-    return date[0].getTime() + date[1][0]*60*60*1000 + date[1][1]*60*1000 + date[1][2]*1000;
 
+    return date[0].getTime() + date[1][0]*MINUTES*SECONDS*MILLISECONDS //hours to milliseconds
+                             + date[1][1]*SECONDS*MILLISECONDS // minutes to milliseconds
+                             + date[1][2]*MILLISECONDS; // seconds to milliseconds
 }

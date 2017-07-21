@@ -7,8 +7,8 @@ function make(){
         var row = document.createElement('tr');
         for(var j = 0; j < width; j++){
             var cell = document.createElement('td');
-            if((i+j) %2 === 0){
-                cell.classList+= "black"
+            if((i + j) %2 === 0){
+                cell.classList += "black"
             }
             row.appendChild(cell);
         }
