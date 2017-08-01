@@ -22,9 +22,11 @@ function count(){
 function valid(date){
     if(date[0] !== "" && date[1] !== ""){
         if(date[1].split(":").length === VALID_TIME_LENGTH){
-            var reg = new RegExp("/^([0-1]?[0-9]|2[0-4]):([0-5][0-9]):([0-5][0-9])?$/");
+            if(!isNaN((new Date(date[0])).getDay())) {
+                var reg = new RegExp(/^([0-1]?[0-9]|2[0-4]):([0-5][0-9]):([0-5][0-9])?$/);
 
-            return reg.test(date[1]);
+                return reg.test(date[1]);
+            }
         }
     }
 
