@@ -1,0 +1,40 @@
+.draggable{
+    min-width: 60px;
+    max-width: 120px;
+    word-break: break-all;
+    border: 1px solid #d6d6d6;
+    position: absolute;
+    border-radius: 10px;
+    background: #fff;
+    padding: 10px;
+    cursor: pointer;
+}
+.draggable input{
+    width: 100%;
+}
+.draggable:after {
+    content:'';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -30px;
+    width: 0;
+    height: 0;
+    border-top: solid 10px #d6d6d6;
+    border-left: solid 10px transparent;
+    border-right: solid 10px transparent;
+}
+#parent{
+    margin: 50px auto 0;
+    width: 800px;
+    height: 300px;
+    position: relative;
+    background: url(background.jpg) no-repeat;
+    -moz-background-size: cover; /* Firefox 3.6+ */
+    -webkit-background-size: cover; /* Safari 3.1+ и Chrome 4.0+ */
+    -o-background-size: cover; /* Opera 9.6+ */
+    background-size: cover; /* Современные браузеры */
+}
+.ui-draggable-dragging {
+    cursor: move;
+}
