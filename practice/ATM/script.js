@@ -10,16 +10,15 @@ var ATM = {
     logs: [],
     // authorization
     auth: function(number, pin) {
-        if(this.is_auth === false){
-            this.users.map(function(user){
-                if (user.number === number && user.pin === pin){
-                    ATM.is_auth = true;
-                    ATM.current_user = user;
-                    ATM.current_type = user.type;
-                    console.log("Auth success, greetings!");
-                    makeReport({user: ATM.current_type, operation: 'auth', status: 'success'});
-                }
-            })
+        if(!this.is_auth){
+            var currentUser = this.users.find(function(user){
+                return user.number === number && user.pin === pin;
+            });
+            this.is_auth = true;
+            this.current_user = currentUser;
+            this.current_type = currentUser.type;
+            console.log("Auth success, greetings!");
+            makeReport({user: this.current_type, operation: 'auth', status: 'success'});
         } else {
             makeReport({operation: 'auth', status: 'failed'});
             console.log("You should logout before auth again.");
@@ -27,7 +26,7 @@ var ATM = {
     },
     // check current debet
     check: function() {
-        if (this.is_auth === true){
+        if (this.is_auth){
             makeReport({user: this.current_type,operation: 'check', status: 'complete'});
             console.log(this.current_user.debet);
         }else{
@@ -37,7 +36,7 @@ var ATM = {
     },
     // get cash - available for user only
     getCash: function(amount) {
-        if(this.is_auth === true){
+        if(this.is_auth){
             if (this.current_type === "user") {
                 if (typeof amount === "number" && amount >= 0 && amount <= this.current_user.debet) {
                     this.current_user.debet -= amount;
@@ -59,7 +58,7 @@ var ATM = {
     },
     // load cash - available for user only
     loadCash: function(amount) {
-        if (this.is_auth === true) {
+        if (this.is_auth) {
             if (this.current_type === "user") {
                 if (typeof amount === "number" && amount >= 0) {
                     this.current_user.debet += amount;
@@ -81,7 +80,7 @@ var ATM = {
     },
     // load cash to ATM - available for admin only - EXTENDED
     load_cash: function(addition) {
-        if (this.is_auth === true){
+        if (this.is_auth){
             if (this.current_type === "admin") {
                 if (typeof addition === "number" && addition >= 0) {
                     this.cash += addition;
@@ -114,7 +113,7 @@ var ATM = {
         }
     },
     logout: function() {
-        if (this.is_auth === true){
+        if (this.is_auth){
             makeReport({user: this.current_type, operation: 'logout', status: 'success'});
             this.is_auth = false;
             this.current_user = false;
@@ -129,3 +128,11 @@ var ATM = {
 function makeReport(report){
     ATM.logs.push(report);
 }
+
+
+
+// function(user){
+//     if (user.number === number && user.pin === pin){
+
+//     }
+// })
