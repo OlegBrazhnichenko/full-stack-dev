@@ -19,14 +19,11 @@ function getOptions(selectId){
         return obj.id === selectId;
     });
 }
+$(document).ready(function(){
+    var responseData = getOptions('mySelect');
+    for (var i = 0; i < responseData.length; i++) {
 
-window.onload = function(){
-  var responseData = getOptions('mySelect');
-  for (var i = 0; i < responseData.length; i++) {
+        addOptions(responseData[i].id, responseData[i].data);
 
-          addOptions(responseData[i].id, responseData[i].data);
-
-  }
-
-
-};
+    }
+});
