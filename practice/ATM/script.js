@@ -14,11 +14,16 @@ var ATM = {
             var currentUser = this.users.find(function(user){
                 return user.number === number && user.pin === pin;
             });
-            this.is_auth = true;
-            this.current_user = currentUser;
-            this.current_type = currentUser.type;
-            console.log("Auth success, greetings!");
-            makeReport({user: this.current_type, operation: 'auth', status: 'success'});
+            if(currentUser){
+                this.is_auth = true;
+                this.current_user = currentUser;
+                this.current_type = currentUser.type;
+                console.log("Auth success, greetings!");
+                makeReport({user: this.current_type, operation: 'auth', status: 'success'});
+            } else {
+                console.log('Wrong number or pin.');
+            }
+
         } else {
             makeReport({operation: 'auth', status: 'failed'});
             console.log("You should logout before auth again.");
