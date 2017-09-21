@@ -1,0 +1,396 @@
+@font-face {
+  font-family: BlackJack;
+  src: url(../assets/fonts/black_jack_font/BLACKJAR.TTF);
+}
+
+html {
+  font-family: Montserrat;
+}
+
+.block1{
+  background: url('../assets/images/iphone.png') no-repeat 22% 226%,
+              url("../assets/images/blue-pattern.jpg");
+  header {
+    overflow: hidden;
+    padding-bottom: 15px;
+    nav {
+      float: right;
+      i {
+        margin-top: 35px;
+        font-size: 35px;
+        padding-right: 20px;
+        color: white;
+        cursor: pointer;
+      }
+    }
+    .logo{
+      width: 100px;
+      height: 100px;
+      font-family: 'Kaushan Script';
+      float: left;
+      background-color: white;
+      color: #0DA8E3;
+      font-size: 50px;
+      line-height: 72px;
+      text-align: center;
+      -webkit-box-shadow: 15px 15px 0 0 rgba(0,0,0,0.1);
+      -moz-box-shadow: 15px 15px 0 0 rgba(0,0,0,0.1);
+      box-shadow: 15px 15px 0 0 rgba(0,0,0,0.1);
+    }
+  }
+  .content {
+    color: white;
+    text-align: right;
+    padding: 55px 15px 230px 0;
+    .title{
+      font-family: BlackJack;
+      font-size: 73px;
+      margin-bottom: 40px;
+    }
+    .text {
+      font-size: 30px;
+    }
+  }
+}
+.container{
+  max-width:940px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+
+.block2{
+  background: url('../assets/images/ipad.png') no-repeat 105% 207%, #F4F4F4;
+  background-size: 32% 88%;
+  .container{
+    padding: 10% 5%;
+    .content {
+      .title {
+        margin-bottom: 37px;
+        font-size: 35px;
+        color: #535353;
+      }
+      .text {
+        width: 70%;
+        margin-bottom: 25px;
+        line-height: 23px;
+        font-size: 14px;
+        letter-spacing: 0.5px;
+        color: #7F7F7F;
+      }
+      button {
+        margin-top: 70px;
+      }
+    }
+  }
+}
+
+.block3 {
+  overflow: hidden;
+  //background: url(../assets/images/devices.png) no-repeat -18% 130%;
+  background: url(../assets/images/devices.png) no-repeat -24% 130%;
+  background-size: 67% 67%;
+  .container {
+    .content {
+      float: right;
+      width: 420px;
+      padding: 14% 0 25% 0;
+      .title {
+        font-size: 40px;
+        color: #535353;
+        margin-bottom: 33px;
+      }
+      .text {
+        line-height: 23px;
+        font-size: 14px;
+        letter-spacing: 1px;
+        color: #7F7F7F;
+        margin-bottom: 60px;
+      }
+      p {
+        margin: 30px 0;
+      }
+      b {
+        color: #535353;
+      }
+    }
+  }
+}
+
+.block4 {
+  background: url("../assets/images/green-pattern.jpg");
+  text-align: center;
+  .content {
+    padding: 95px 0;
+    .title {
+      color: white;
+      font-size: 38px;
+      text-transform: capitalize;
+      margin-bottom: 40px;
+    }
+  }
+}
+
+.block5 {
+  background-color: #F4F4F4;
+  color: #535353;
+  text-align: center;
+  padding: 240px 0;
+  .subscribe-icons {
+    margin-bottom: 55px;
+    .icon {
+      display: inline-block;
+      width: 48px;
+      height: 48px;
+      text-align: center;
+      border: 3px solid #535353;
+      border-radius: 100px;
+      line-height: 50px;
+      margin-right: 40px;
+      &:last-child{
+        margin-right: 0;
+      }
+    }
+  }
+  .input-subscribe {
+    .input-wrapper {
+      background-color: white;
+      display: inline-block;
+      padding: 15px;
+      margin-top: 20px;
+      border-radius: 10px;
+      margin-left: 15px;
+      input {
+        outline: none;
+        border: 0;
+        color: #535353;
+      }
+      &:after {
+        content: "\f0e0";
+        font-family: 'FontAwesome';
+        color: #00C6EB;
+        border-left: 1px solid #E9E9E9;
+        padding-left: 15px;
+      }
+    }
+  }
+}
+
+footer {
+  padding: 50px 0;
+  text-align: center;
+  color: #535353;
+  font-size: 12px;
+  a {
+    text-decoration: none;
+  }
+}
+
+blockquote {
+  width: 66%;
+  border-left: 6px solid #00AED7;
+  padding-left: 25px;
+  line-height: 23px;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  color: #7F7F7F;
+}
+.btn {
+  background: transparent;
+  border: 2px solid white;
+  border-radius: 3px;
+  cursor: pointer;
+  text-transform: uppercase;
+  padding: 19px 36px;
+}
+.btn-default {
+  color: white;
+}
+
+.btn-success {
+  color: #01B08F;
+  border-color: #01B08F;
+}
+.btn-danger {
+  color: #FE4B8B;
+  border-color: #FE4B8B;
+}
+
+.download{
+  margin: 50px 5px 0 0;
+}
+
+b {
+  font-weight: bold;
+}
+
+i {
+  font-style: italic;
+}
+
+@media (max-width: 800px) {
+  .block1 {
+    background: url("../assets/images/iphone.png") no-repeat 22% 343%, url("../assets/images/blue-pattern.jpg");
+    .content{
+      padding-bottom: 180px;
+      .title {
+        font-size: 60px;
+      }
+      .text {
+        font-size: 23px;
+      }
+    }
+  }
+  .block2 {
+    background-image: none;
+    .title {
+      text-align: center;
+    }
+    .text {
+      width: 90%;
+    }
+    blockquote {
+      width: 90%;
+    }
+  }
+  .block3 {
+    background: url(../assets/images/devices.png) no-repeat 145% 140%;
+    background-size: 72% 59%;
+    .container {
+      .content {
+        float: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 620px) {
+  .block1 {
+    background: url("../assets/images/blue-pattern.jpg");
+    .container {
+      .content {
+        margin: 0 auto;
+        text-align: center;
+        width: 350px;
+      }
+    }
+  }
+}
+
+@media (max-width: 435px) {
+  .container {
+    padding: 0 5%;
+  }
+  .block1 {
+    .container {
+      .content {
+        padding-right: 0;
+        .title {
+          font-size: 45px;
+        }
+        .text {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+  .block2 {
+    .container {
+      .content {
+        .title {
+          font-size: 28px;
+        }
+        .text {
+          text-align: justify;
+          width: 100%;
+        }
+        blockquote {
+          text-align: justify;
+        }
+      }
+    }
+  }
+  .block3 {
+    background: white;
+    .container {
+      .content {
+        text-align: center;
+        width: 100%;
+        .title {
+
+        }
+        .text {
+          text-align: left;
+        }
+      }
+    }
+  }
+  .block4 {
+    .container {
+      .content {
+        .title {
+          font-size: 35px;
+        }
+      }
+    }
+  }
+  .block5 {
+    .container {
+      .content {
+        .subscribe-icons {
+          .icon {
+            margin-right: 6.3%;
+            &:last-child{
+              margin-right: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 375px) {
+  .block1 {
+    .container {
+      .content {
+        width: 100%;
+      }
+    }
+  }
+  .block2 {
+    .container {
+      .content {
+        text-align: center;
+        .text {
+          text-align: justify;
+          width: 100%;
+        }
+        blockquote {
+          text-align: justify;
+        }
+      }
+    }
+  }
+  .block3 {
+    .container {
+      .content {
+        .title {
+          font-size: 28px;
+        }
+        .text {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+  .block4 {
+    .container {
+      .content {
+        .title {
+          font-size: 30px;
+        }
+      }
+    }
+  }
+}
