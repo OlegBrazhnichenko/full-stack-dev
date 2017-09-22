@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="radio" name="group1" value="milk"> Milk<br>
+    <input type="radio" name="group1" value="butter"> Butter<br>
+    <input type="radio" name="group1" value="cheese"> Cheese <br>
+    <input type="button" value="vote" onclick="vote()">
+    <script>
+        function vote() {
+            var radios = document.getElementsByName('group1');
+            for (var i = 0, length = radios.length; i < length; i++) {
+                if (radios[i].checked) {
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function() {
+                        if (this.readyState === 4 && this.status === 200) {
+                            showVotes(JSON.parse(this.responseText));
+                        }
+                    };
+                    xhttp.open("POST", "server.php");
+                    xhttp.send(JSON.stringify({vote:radios[i].value}));
+
+                    break;
+                }
+            }
+        }
+        function showVotes(votes) {
+            var output = document.getElementsByTagName('body')[0];
+            output.innerHTML = "";
+            for (var i = 0; i < Object.keys(votes).length; i++) {
+                output.innerHTML += Object.keys(votes)[i] + ": " + votes[Object.keys(votes)[i]] + "<br/>";
+            }
+        }
+    </script>
+</body>
+</html>
