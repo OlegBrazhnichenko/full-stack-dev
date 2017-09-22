@@ -6,6 +6,8 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
 </head>
 <body>
     <input type="radio" name="group1" value="milk"> Milk<br>
@@ -32,10 +34,48 @@
         }
         function showVotes(votes) {
             var output = document.getElementsByTagName('body')[0];
-            output.innerHTML = "";
-            for (var i = 0; i < Object.keys(votes).length; i++) {
-                output.innerHTML += Object.keys(votes)[i] + ": " + votes[Object.keys(votes)[i]] + "<br/>";
-            }
+            output.innerHTML = '<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>\n';
+            Highcharts.chart('container', {
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    type: 'pie'
+                },
+                title: {
+                    text: 'Votes'
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                            style: {
+                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                            }
+                        }
+                    }
+                },
+                series: [{
+                    name: 'votes',
+                    colorByPoint: true,
+                    data: [{
+                        name: Object.keys(votes)[0],
+                        y: votes[Object.keys(votes)[0]]
+                    },{
+                        name: Object.keys(votes)[1],
+                        y: votes[Object.keys(votes)[1]]
+                    },{
+                        name: Object.keys(votes)[2],
+                        y: votes[Object.keys(votes)[2]]
+                    }]
+                }]
+            });
         }
     </script>
 </body>
