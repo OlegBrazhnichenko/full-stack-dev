@@ -1,13 +1,19 @@
 .draggable{
-    min-width: 60px;
-    max-width: 120px;
+    min-width: 120px;
+    max-width: 300px;
     word-break: break-all;
+    max-height: 280px;
     border: 1px solid #d6d6d6;
     position: absolute;
     border-radius: 10px;
     background: #fff;
     padding: 10px;
     cursor: pointer;
+}
+.text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .draggable input{
     width: 100%;
@@ -27,7 +33,7 @@
 #parent{
     margin: 50px auto 0;
     width: 800px;
-    height: 300px;
+    height: 500px;
     position: relative;
     background: url(background.jpg) no-repeat;
     -moz-background-size: cover; /* Firefox 3.6+ */
