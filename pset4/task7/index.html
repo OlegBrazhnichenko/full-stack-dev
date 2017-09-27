@@ -6,6 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
 </head>
@@ -19,14 +20,14 @@
             var radios = document.getElementsByName('group1');
             for (var i = 0, length = radios.length; i < length; i++) {
                 if (radios[i].checked) {
-                    var xhttp = new XMLHttpRequest();
-                    xhttp.onreadystatechange = function() {
-                        if (this.readyState === 4 && this.status === 200) {
-                            showVotes(JSON.parse(this.responseText));
+                    $.ajax({
+                        url: "./server.php",
+                        type: "POST",
+                        data: {vote:radios[i].value},
+                        success: function(response){
+                            showVotes(JSON.parse(response));
                         }
-                    };
-                    xhttp.open("POST", "server.php");
-                    xhttp.send(JSON.stringify({vote:radios[i].value}));
+                    });
 
                     break;
                 }
