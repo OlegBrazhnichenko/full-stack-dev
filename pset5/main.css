@@ -1,0 +1,138 @@
+@font-face {
+    font-family: Pacifico; /* Имя шрифта */
+    src: url(./fonts/Pacifico.ttf); /* Путь к файлу со шрифтом */
+}
+@font-face {
+    font-family: Montserrat; /* Имя шрифта */
+    src: url(./fonts/Montserrat-Regular.ttf); /* Путь к файлу со шрифтом */
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #B0D080;
+}
+
+.title {
+    margin-bottom: 40px;
+}
+
+.title h1{
+    font-family: Pacifico;
+    text-transform: capitalize;
+    color: #fffecd;
+    text-align: center;
+    font-size: 55px;
+    font-weight: 100;
+}
+
+.wrapper {
+    font-family: Montserrat;
+    padding: 70px 20px 0 20px;
+}
+
+form {
+    padding: 10px;
+}
+
+input {
+    padding: 5px;
+    background: #F9FCC8;
+    border: 0;
+}
+
+form input {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+form input:last-child {
+    margin-bottom: 0;
+}
+
+form label {
+    color: #635960;
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+form label:first-letter {
+    text-transform: uppercase;
+}
+
+.btn {
+    background: #635960;
+    color: #F9FCC8;
+    border: 0;
+}
+
+.btn:hover {
+    background: #766c73;
+    transition: 0.2s;
+}
+
+.btn-submit {
+    font-size: 20px;
+    position: relative;
+    transition: 0.1s;
+}
+
+#login {
+    width: 325px;
+    margin: 0 auto;
+    display: none;
+}
+
+#chat {
+    width: 450px;
+    margin: 0 auto;
+    padding-bottom: 30px;
+    display: none;
+}
+
+#messages {
+    overflow-y: scroll;
+    width: 100%;
+    height: 250px;
+    background: #F9FCC8;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+#message-input {
+    font-size: 18px;
+    width: 365px;
+    margin-right: 8px;
+}
+
+.btn-send {
+    text-transform: capitalize;
+    font-size: 18px;
+    padding: 5px 15px;
+}
+
+.time {
+    font-weight: bold;
+}
+
+.name {
+    font-weight: bold;
+}
+
+b {
+    font-weight: bold;
+}
+
+#messages span {
+    margin-right: 5px;
+}
+
+#messages span:last-child{
+    margin-right: 0;
+}
+
+#messages .message {
+    margin-bottom: 10px;
+}
