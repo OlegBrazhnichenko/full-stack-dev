@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="script.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="title">
+            <h1>easy chat</h1>
+        </div>
+        <div id="login">
+            <form id="login-form">
+                <label for="username">enter your name</label>
+                <input name="username" id="username" type="text">
+                <label for="password">enter your password</label>
+                <input name="password" id="password" type="password">
+                <input type="submit" class="btn btn-submit" onclick="login(event)">
+            </form>
+        </div>
+        <div id="chat">
+            <div id="messages"></div>
+            <input type="text" id="message-input">
+            <input type="button" id="send" value="send" class="btn btn-send" onclick="handleSend()">
+        </div>
+    </div>
+</body>
+</html>
