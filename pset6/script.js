@@ -1,7 +1,20 @@
 $(function() {
-    isAuth();
+    checkDatabase().then(function() {
+        isAuth();
+    }, function() {
+        console.error('error connecting with database, please set up correct username and password in mysqlConfig.php');
+    });
 });
 
+function checkDatabase() {
+    return $.ajax({
+        url: "./databaseSetup.php",
+        type: "POST",
+        success: function(connection){
+            return connection === "success";
+        }
+    });
+}
 
 function isAuth() {
     $.ajax({
@@ -153,7 +166,7 @@ function showMessages(messages) {
     output.empty();
     var atTheBottom = output.scrollTop === output[0].scrollHeight;
     for (var i = 0; i < messages.length; i++) {
-        messages[i].timestamp = convertTime(messages[i].timestamp);
+        messages[i].timestamp = convertTime(Number(messages[i].timestamp));
         var template = '<div class="message" id="'+messages[i].id+'">' +
             '<span class="time">['+messages[i].timestamp+']</span>' +
             '<span class="name">'+messages[i].username+':</span>' +
@@ -175,7 +188,7 @@ function checkTime(i) {
 }
 
 function convertTime(timestamp) {
-    timestamp = new Date(timestamp);
+    timestamp = new Date(timestamp*1000);
     var h = timestamp.getHours();
     var m = timestamp.getMinutes();
     var s = timestamp.getSeconds();

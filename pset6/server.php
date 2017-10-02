@@ -1,5 +1,15 @@
 <?php
 
+    include './mysqlConfig.php';
+
+    $link = mysqli_connect($mysql_host, $mysql_username, $mysql_password, $db_name);
+    if (!$link) {
+        die('Could not connect: ' . mysqli_error($link));
+    }
+
+    $db_selected = mysqli_select_db($link, 'chat');
+
+
     session_start();
 
     switch ($_SERVER['REQUEST_METHOD']) {
@@ -52,7 +62,7 @@
     function login() {
         $username = $_POST['username'];
         $password = $_POST['password'];
-        if (userExist($username, $password)) {
+        if (userExist($username, $password) === "true") {
             $_SESSION['username'] = $username;
 
             echo 'success';
@@ -69,15 +79,13 @@
     function register() {
         $username = $_POST['username'];
         $password = $_POST['password'];
-        if (!userExist($username, $password)) {
-
-            $users = json_decode(file_get_contents("./users.json"));
-            $newUser = new stdClass();
-            $newUser->username = $username;
-            $newUser->password = $password;
-            $users[] = $newUser;
-            file_put_contents('./users.json', json_encode($users));
+        if (userExist($username, $password) === "false") {
+            $sql = 'INSERT INTO `users`(`username`, `password`) VALUES ("'.$username.'", "'.$password.'")';
+            if(!mysqli_query($GLOBALS['link'], $sql)) {
+                mysqli_error($GLOBALS['link']);
+            };
             if (userExist($username, $password)) {
+                $_SESSION['username'] = $username;
 
                 echo 'register success';
             }
@@ -88,24 +96,27 @@
     }
 
     function userExist($username, $password) {
-        $users = json_decode(file_get_contents("./users.json"));
-        return (sizeof(array_filter($users, function($value) use ($username, $password) {
-            return $value->username === $username && $value->password === $password;
-        })));
+
+        $sql = 'SELECT `username` FROM `users` WHERE `username` = "' . $username . '" AND `password` ="' . $password.'"';
+        $result = mysqli_query($GLOBALS['link'], $sql);
+//        print_r((mysqli_num_rows($result) >= 1) === false);
+        if (mysqli_num_rows($result) >= 1) {
+            return "true";
+        } else {
+            return "false";
+        }
 
     }
 
     function postMessage() {
         if (isset($_SESSION['username'])) {
-            echo "message";
-            $message = new StdClass();
-            $message->id        = uniqid();
-            $message->username  = $_SESSION['username'];
-            $message->message   = $_POST['message'];
-            $message->timestamp = time();
-            $messages = json_decode(file_get_contents('./store.json'));
-            $messages[] = $message;
-            file_put_contents('./store.json', json_encode($messages));
+            $sql = 'INSERT INTO `messages`(`username`, `message`, `timestamp`)
+                VALUES ("'.$_SESSION['username'].'","'.$_POST['message'].'",CURRENT_TIMESTAMP)';
+            if (mysqli_query($GLOBALS['link'], $sql)) {
+                echo "New record created successfully";
+            } else {
+                echo "Error: " . $sql . "<br>" . mysqli_error($GLOBALS['link']);
+            }
         } else {
 
             echo "auth failed";
@@ -113,15 +124,27 @@
     }
 
     function getMessages() {
+        $sql = 'SELECT `id`, `username`, `message`, UNIX_TIMESTAMP(`timestamp`) FROM `messages` WHERE 1';
+        $result = mysqli_query($GLOBALS['link'], $sql);
+        $messages = Array();
+        while($row = mysqli_fetch_assoc($result)) {
+            $message = new StdClass();
+            $message->id        = $row['id'];
+            $message->username  = $row['username'];
+            $message->message   = $row['message'];
+            $message->timestamp = $row['UNIX_TIMESTAMP(`timestamp`)'];
+            $messages[]         = $message;
+        }
 
-        echo filterMessages(file_get_contents("./store.json"));
+        echo json_encode($messages);
     }
 
     function filterMessages($messages) {
         $messages = json_decode($messages);
-        return json_encode(array_filter($messages, function($value){
-            return $value->timestamp >= time()-60*60;
-        }));
+        return json_encode(array_values(array_filter($messages, function($value){
+            return intval($value->timestamp) >= time()-60*60*1000;
+        })));
 
     }
 
+    mysqli_close($link);
