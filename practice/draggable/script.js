@@ -88,6 +88,7 @@ function createBalloon(id, x, y, text){
         $(span).remove();
         var input = $(this).find('input')[0];
         $(input).focus();
+        $(input).select();
         $(input).focusout(function (event) {
             if(this.value.trim() === ""){
                 $(event.target.parentNode).remove();
