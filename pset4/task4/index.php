@@ -12,7 +12,7 @@
     <div class="dashboard">
         <?php
             for ($i = 0; $i < 25; $i++) {
-                echo '<div class="cell"></div>';
+                echo '<div class="cell '. ($i % 2 === 0 ? 'black' : '' ) .'"></div>';
             }
         ?>
     </div>

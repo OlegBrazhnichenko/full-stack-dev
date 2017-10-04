@@ -10,6 +10,6 @@
     float: left;
 }
 
-.cell:nth-child(odd) {
-    background: black;
+.black {
+    background-color: black;
 }
