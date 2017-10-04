@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <input type="text" id="regex-input" placeholder="Enter RegExp"><br>
+    <textarea name="" id="content" cols="30" rows="10" placeholder="enter text"></textarea><br>
+    <input type="button" value="go" onclick="mark()">
+    <div id="output"></div>
+    <script>
+        function mark() {
+            var reg = new RegExp(document.getElementById('regex-input').value,'g');
+            var text = document.getElementById('content').value;
+            document.getElementById('output').innerHTML = text.replace(reg, '<mark>$&</mark>');
+        }
+    </script>
+</body>
+</html>

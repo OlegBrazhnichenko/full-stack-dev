@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <form action="">
+        <label for="ip">ip:</label>
+        <input type="text"
+               id="ip"
+               pattern="^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
+               title="write valid ip address"
+               required
+        ><br>
+        <label for="url">url:</label>
+        <input type="text"
+               id="url"
+               pattern="^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$"
+               title="write valid url"
+               required
+        ><br>
+        <label for="email">email:</label>
+        <input type="text"
+               id="email"
+               pattern="^([a-z0-9_\.-]+)@([a-z0-9_\.-]+)\.([a-z\.]{2,6})$"
+               title="write valid email"
+               required
+        ><br>
+        <label for="date">date:</label>
+        <input type="text"
+               id="date"
+               pattern="(0[1-9]|1[012])[- \/.](0[1-9]|[12][0-9]|3[01])[- \/.](19|20)\d\d"
+               title="format MM/DD/YYYY"
+               required
+        ><br>
+        <label for="time">time:</label>
+        <input type="text"
+               id="time"
+               pattern="^(?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)$"
+               title="format HH:MM:SS"
+               required
+        ><br>
+
+        <input type="submit">
+
+    </form>
+</body>
+</html>

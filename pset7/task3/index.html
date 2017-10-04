@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * CLASS logger
+         *
+         *  startLogging(functionsList)
+         *       can receive string, array or empty string as parameter.
+         *       in case of empty string, start logging all user defined
+         *       functions.
+         *
+         *  stop(functionsList)
+         *       can receive string, array or empty string as parameter.
+         *       in case of empty string, stop logging all user defined
+         *       functions
+         *
+         *  Also you can bind logging decorator to your function. After
+         *  if, logger will log every call of this function.
+         *
+         *  Example:
+         *      user = {
+         *          test: function() {
+         *              console.log("hello world!");
+         *          }
+         *      }
+         *
+         *      logger.loggingDecorator(user.test)();          - log function call once
+         *      user.test                                      - call function without log
+         *
+         *      user.test = logger.loggingDecorator(user.test) - bind decorator
+         *      user.test()                                    - call function with logs
+         *
+         *  More examples below
+         */
+        var logger = {
+            loggedFunctions: [],
+            cashedFunctions: [],
+            startLogging: function (functionsList) {
+
+                functionsList = functionsList ? functionsList : window;
+                functionsList = typeof functionsList === "string" ? (new Array(1)).fill(functionsList): functionsList;
+
+                if (Object.prototype.toString.call( functionsList ) === '[object Array]') {
+                    this.bindDecorator(functionsList);
+                } else if (typeof functionsList === 'object') {
+                    var funcs = Object.keys(functionsList).filter(function(x) {
+                        return  window[x] instanceof Function &&
+                            !/\[native code\]/.test(window[x].toString()) &&
+                            logger.loggedFunctions.indexOf(x) === -1;
+                    });
+                    this.bindDecorator(funcs);
+                } else {
+                    console.error('You should pass only string, empty string or array to logger.log function!')
+                }
+            },
+            bindDecorator: function (funcs) {
+                for (var i = 0; i < funcs.length; i++) {
+                    this.cashedFunctions.push(window[funcs[i]]);
+                    window[funcs[i]] = this.loggingDecorator(window[funcs[i]]);
+                    this.loggedFunctions.push(funcs[i]);
+                }
+            },
+            loggingDecorator: function(wrapped) {
+                return function() {
+                    console.group('Call:',wrapped.name);
+                    console.log('Starting ',wrapped.name,' with arguments:',arguments);
+                    var t0 = performance.now();
+                    const result = wrapped.apply(this, arguments);
+                    var t1 = performance.now();
+                    console.log('Finished', wrapped.name,' in '+ (t1 - t0) + ' milliseconds.\tFunction return:',result||'void');
+                    console.groupEnd();
+
+                    return result;
+                }
+            },
+            stop: function(functionsList) {
+                functionsList = functionsList ? functionsList : this.loggedFunctions.slice();
+                functionsList = typeof functionsList === "string" ? (new Array(1)).fill(functionsList): functionsList;
+                console.log(functionsList.length);
+                for (var i = 0; i < functionsList.length; i++) {
+                    var cashedFunc = this.cashedFunctions.find(this.filter(functionsList[i]));
+                    window[functionsList[i]] = cashedFunc;
+                    this.cashedFunctions.splice(this.cashedFunctions.indexOf(cashedFunc), 1);
+                    this.loggedFunctions.splice(this.loggedFunctions.indexOf(functionsList[i]), 1);
+                }
+            },
+            filter: function(searchFunc) {
+                return function(func){return func.name === searchFunc}
+            }
+        };
+
+
+
+        // SOME EXAMPLES
+
+        var user = {
+            test : function () {
+                console.log("test");
+            }
+        };
+        logger.startLogging();
+
+        // logger didn't set up decorators if you try to set up decorators
+        // on functions that are already decorated
+        logger.startLogging();
+
+        function testfunc1(test){
+            return (test+1);
+        }
+        function testfunc2(test){
+            console.log(test);
+        }
+        function testfunc3(test){
+            console.log(testfunc1(test));
+        }
+        testfunc1(2);
+        testfunc2("test");
+        testfunc3(4);
+
+        logger.stop();
+
+        testfunc1(2);
+        testfunc2("test");
+        testfunc3(4);
+
+        logger.startLogging('testfunc1');
+
+        testfunc1(2); // double log because func1 called in func3
+        testfunc2("test");
+        testfunc3(4);
+
+        logger.startLogging(['testfunc2', 'testfunc3']);
+
+        testfunc1(2);
+        testfunc2("test");
+        testfunc3(4);
+
+        logger.stop(['testfunc3','testfunc1']);
+
+        testfunc1(2);
+        testfunc2("test");
+        testfunc3(4);
+
+        logger.loggingDecorator(user.test)();
+
+    </script>
+</body>
+</html>
